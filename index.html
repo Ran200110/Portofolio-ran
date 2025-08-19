@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portofolio • Imran</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui"],
+            display: ["Urbanist", "Inter", "ui-sans-serif"],
+          },
+          colors: {
+            base: {
+              50: "#fafafa",
+              100: "#f4f4f5",
+              200: "#e4e4e7",
+              800: "#27272a",
+              900: "#18181b",
+            },
+            brand: {
+              50: "#eef2ff",
+              100: "#e0e7ff",
+              400: "#818cf8",
+              500: "#6366f1",
+              600: "#4f46e5",
+              900: "#312e81",
+            },
+          },
+          boxShadow: {
+            soft: "0 10px 30px rgba(2,6,23,.08)",
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-6px)' },
+            },
+            fadeInUp: {
+              '0%': { opacity: 0, transform: 'translateY(16px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' }
+            },
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            fadeInUp: 'fadeInUp .8s ease both',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Urbanist:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Base styles (noise/gradients) -->
+  <style>
+    .noise { position: fixed; inset: 0; pointer-events: none; opacity:.08; mix-blend-mode: soft-light; background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"300\" height=\"300\"><filter id=\"n\"><feTurbulence baseFrequency=\"0.65\" numOctaves=\"2\"/></filter><rect width=\"100%\" height=\"100%\" filter=\"url(%23n)\" opacity=\"0.35\"/></svg>'); background-size: 300px; }
+    .glass { backdrop-filter: saturate(160%) blur(10px); -webkit-backdrop-filter: saturate(160%) blur(10px); }
+    .section { scroll-margin-top: 96px; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: all .7s ease; }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body class="bg-base-50 text-base-900 dark:bg-base-900 dark:text-base-100 antialiased">
+  <div class="noise"></div>
+
+  <!-- Navbar -->
+  <header class="fixed top-0 inset-x-0 z-50">
+    <div class="container mx-auto max-w-6xl px-4">
+      <nav class="mt-4 flex items-center justify-between rounded-2xl glass bg-white/60 dark:bg-base-800/50 px-4 py-3 shadow-soft">
+        <a href="#home" class="flex items-center gap-2">
+          <div class="h-8 w-8 rounded-xl bg-gradient-to-tr from-brand-500 to-fuchsia-500 animate-float"></div>
+          <span class="font-display text-xl tracking-tight">Rankhay</span>
+        </a>
+        <button id="navBtn" class="lg:hidden inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-base-200/60 dark:border-white/10">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <span class="text-sm">Menu</span>
+        </button>
+        <ul id="navMenu" class="hidden lg:flex items-center gap-6">
+          <li><a class="hover:text-brand-600" href="#home">Home</a></li>
+          <li><a class="hover:text-brand-600" href="#about">About</a></li>
+          <li><a class="hover:text-brand-600" href="#blog">Blog</a></li>
+          <li><a class="hover:text-brand-600" href="#testi">Testimonial</a></li>
+          <li><a class="hover:text-brand-600" href="#contact">Contact</a></li>
+          <li>
+            <button id="themeToggle" aria-label="Toggle Theme" class="ml-2 rounded-xl border border-base-200/60 dark:border-white/10 p-2">
+              <svg id="sun" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+              <svg id="moon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <!-- Mobile panel -->
+      <div id="mobilePanel" class="lg:hidden hidden mt-2 rounded-2xl glass bg-white/60 dark:bg-base-800/50 px-4 py-3 shadow-soft">
+        <a class="block py-2" href="#home">Home</a>
+        <a class="block py-2" href="#about">About</a>
+        <a class="block py-2" href="#blog">Blog</a>
+        <a class="block py-2" href="#testi">Testimonial</a>
+        <a class="block py-2" href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="home" class="section relative pt-36 pb-20">
+      <div aria-hidden="true" class="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50/80 to-transparent dark:from-brand-900/10"></div>
+      <div class="container mx-auto max-w-6xl px-4 grid lg:grid-cols-2 items-center gap-10">
+        <div class="reveal">
+          <p class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-brand-600/80 bg-brand-50 dark:bg-brand-900/30 border border-brand-100/50 dark:border-white/5 rounded-full px-3 py-1">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-brand-500"></span> Tersedia untuk proyek freelance
+          </p>
+          <h1 class="mt-5 font-display text-4xl sm:text-5xl leading-tight">Hallo, saya <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-600 to-fuchsia-500">Imran Khayri</span> — Junior Programing & Mountaineer</h1>
+          <p class="mt-4 text-base/relaxed text-base-800/80 dark:text-base-100/80">Saya membangun website yang lumayan cepat, responsif, dan punya sentuhan estetika modern. Fokus pada aksesibilitas, dan performa.</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#contact" class="inline-flex items-center gap-2 rounded-xl bg-brand-600 text-white px-4 py-2 shadow-soft hover:translate-y-0.5 transition">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.97-4.03 9-9 9a8.96 8.96 0 01-5.65-2l-3.35.67.68-3.32A9 9 0 1121 12z"/></svg>
+              Konsultasi Gratis
+            </a>
+            <a href="#portfolio" class="inline-flex items-center gap-2 rounded-xl border border-base-200/60 dark:border-white/10 px-4 py-2 hover:bg-white/60 dark:hover:bg-white/5 transition">Lihat Karya</a>
+          </div>
+          <div class="mt-10 flex items-center gap-6">
+            <div class="text-sm"><span class="font-semibold">1+</span> bulan pengalaman</div>
+            <div class="h-5 w-px bg-base-200/80 dark:bg-white/10"></div>
+            <div class="text-sm"><span class="font-semibold">4+</span> proyek selesai</div>
+          </div>
+        </div>
+        <div class="relative reveal">
+          <div class="absolute -top-10 -left-6 w-56 h-56 bg-gradient-to-tr from-brand-500/30 to-fuchsia-500/30 rounded-full blur-3xl"></div>
+          <div class="relative rounded-3xl overflow-hidden shadow-soft ring-1 ring-base-200/70 dark:ring-white/10">
+            <img src="yy.png" alt="" class="object-cover w-full h-[320px]">
+          </div>
+          <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-gradient-to-tr from-fuchsia-500/30 to-brand-500/30 rounded-full blur-3xl"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section py-20">
+      <div class="container mx-auto max-w-6xl px-4">
+        <div class="grid lg:grid-cols-3 gap-10 items-start reveal">
+          <div class="lg:col-span-1">
+            <h2 class="font-display text-3xl">Tentang Saya</h2>
+            <p class="mt-3 text-base-800/80 dark:text-base-100/80">Berfokus pada pengembangan antarmuka yang humanis, dengan perhatian pada detail mikro-interaksi, animasi halus, dan konsistensi visual.</p>
+            <ul class="mt-6 space-y-3 text-sm">
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span> HTML, CSS (Tailwind), JavaScript</li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 grid sm:grid-cols-2 gap-6">
+            <article class="rounded-2xl p-6 border border-base-200/70 dark:border-white/10 bg-white/60 dark:bg-base-800/50 shadow-soft">
+              <h3 class="font-semibold">Nilai & Prinsip</h3>
+              <p class="mt-2 text-sm text-base-800/80 dark:text-base-100/80">Keterbacaan, kontras, dan hierarki visual adalah dasar desain saya. Performansi tidak dikorbankan demi visual.</p>
+            </article>
+            <article class="rounded-2xl p-6 border border-base-200/70 dark:border-white/10 bg-white/60 dark:bg-base-800/50 shadow-soft">
+              <h3 class="font-semibold">Stack & Tools</h3>
+              <p class="mt-2 text-sm text-base-800/80 dark:text-base-100/80">Tailwind, Figma, Framer, GSAP, Vite/Next, dan alat optimasi seperti Lighthouse.</p>
+            </article>
+            <article class="rounded-2xl p-6 border border-base-200/70 dark:border-white/10 bg-white/60 dark:bg-base-800/50 shadow-soft">
+              <h3 class="font-semibold">Pengalaman</h3>
+              <p class="mt-2 text-sm text-base-800/80 dark:text-base-100/80">Berkolaborasi dengan startup dan brand untuk merancang pengalaman web yang berdampak.</p>
+            </article>
+            <article class="rounded-2xl p-6 border border-base-200/70 dark:border-white/10 bg-white/60 dark:bg-base-800/50 shadow-soft">
+              <h3 class="font-semibold">Hasil</h3>
+              <p class="mt-2 text-sm text-base-800/80 dark:text-base-100/80">Skor Lighthouse 95+, aksesibilitas AA, dan peningkatan konversi.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog / Projects -->
+    <section id="blog" class="section py-20 bg-gradient-to-b from-transparent to-base-100/60 dark:to-base-800/30">
+      <div class="container mx-auto max-w-6xl px-4">
+        <div class="reveal">
+          <div class="flex items-end justify-between gap-6">
+            <h2 class="font-display text-3xl">Blog & Proyek</h2>
+            <a href="#" class="text-sm hover:text-brand-600">Lihat semua</a>
+          </div>
+          <p class="mt-2 text-base-800/80 dark:text-base-100/80">Tulisan dan studi kasus terbaru tentang proses desain dan pengembangan.</p>
+        </div>
+        <div class="mt-8 grid md:grid-cols-3 gap-6 reveal">
+          <!-- Card 1 -->
+          <article class="group rounded-2xl overflow-hidden border border-base-200/70 dark:border-white/10 bg-white/60 dark:bg-base-800/50 shadow-soft hover:-translate-y-1 transition">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" alt="Case Study" class="h-40 w-full object-cover"/>
+            <div class="p-5">
+              <span class="text-xs uppercase tracking-wider text-brand-600">Case Study</span>
+              <h3 class="mt-1 font-semibold group-hover:text-brand-600">Redesign Dashboard Analitik</h3>
+              <p class="mt-2 text-sm text-base-800/80 dark:text-base-100/80">Bagaimana grid system dan skala tipografi meningkatkan insight pengguna.</p>
+            </div>
+          </article>
+          <!-- Card 2 -->
+          <article class="group rounded-2xl overflow-hidden border border-base-200/70 dark:border-white/10 bg-white/60 dark:bg-base-800/50 shadow-soft hover:-translate-y-1 transition">
+            <img src="https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=80&w=1200&auto=format&fit=crop" alt="Artikel" class="h-40 w-full object-cover"/>
+            <div class="p-5">
+              <span class="text-xs uppercase tracking-wider text-brand-600">Artikel</span>
+              <h3 class="mt-1 font-semibold group-hover:text-brand-600">Arsitektur CSS yang Tahan Skala</h3>
+              <p class="mt-2 text-sm text-base-800/80 dark:text-base-100/80">Strategi komponen dan utilitas agar codebase tetap rapi.</p>
+            </div>
+          </article>
+          <!-- Card 3 -->
+          <article class="group rounded-2xl overflow-hidden border border-base-200/70 dark:border-white/10 bg-white/60 dark:bg-base-800/50 shadow-soft hover:-translate-y-1 transition">
+            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Tips" class="h-40 w-full object-cover"/>
+            <div class="p-5">
+              <span class="text-xs uppercase tracking-wider text-brand-600">Tips</span>
+              <h3 class="mt-1 font-semibold group-hover:text-brand-600">Checklist Aksesibilitas untuk Dev</h3>
+              <p class="mt-2 text-sm text-base-800/80 dark:text-base-100/80">Hal-hal sederhana yang berdampak besar untuk semua pengguna.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section id="testi" class="section py-20">
+      <div class="container mx-auto max-w-6xl px-4">
+        <h2 class="font-display text-3xl reveal">Apa kata klien</h2>
+        <div class="mt-8 grid md:grid-cols-3 gap-6">
+          <!-- Testi card -->
+          <figure class="rounded-2xl p-6 border border-base-200/70 dark:border-white/10 bg-white/60 dark:bg-base-800/50 shadow-soft reveal">
+            <div class="flex items-center gap-3">
+              <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=256&auto=format&fit=crop" alt="Client" />
+              <figcaption>
+                <div class="font-semibold">Alya Prameswari</div>
+                <div class="text-xs text-base-800/70 dark:text-base-100/70">CMO, FinPeak</div>
+              </figcaption>
+            </div>
+            <div class="mt-3 text-sm text-base-800/80 dark:text-base-100/80">“Komunikatif, cepat, dan hasilnya rapi. Landing page kami konversinya naik 28%.”</div>
+            <div class="mt-3 flex gap-1" aria-label="rating">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </div>
+          </figure>
+          <figure class="rounded-2xl p-6 border border-base-200/70 dark:border-white/10 bg-white/60 dark:bg-base-800/50 shadow-soft reveal">
+            <div class="flex items-center gap-3">
+              <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop" alt="Client" />
+              <figcaption>
+                <div class="font-semibold">Nadia Putri</div>
+                <div class="text-xs text-base-800/70 dark:text-base-100/70">Founder, Bloomly</div>
+              </figcaption>
+            </div>
+            <div class="mt-3 text-sm text-base-800/80 dark:text-base-100/80">“Desainnya elegan, performa mantap. Dokumentasi dan handover-nya jelas.”</div>
+            <div class="mt-3 flex gap-1" aria-label="rating">
+              <span class="sr-only">5/5</span>
+              <div class="flex">★★★★★</div>
+            </div>
+          </figure>
+          <figure class="rounded-2xl p-6 border border-base-200/70 dark:border-white/10 bg-white/60 dark:bg-base-800/50 shadow-soft reveal">
+            <div class="flex items-center gap-3">
+              <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=256&auto=format&fit=crop" alt="Client" />
+              <figcaption>
+                <div class="font-semibold">Rama Dwi</div>
+                <div class="text-xs text-base-800/70 dark:text-base-100/70">CTO, Orbit</div>
+              </figcaption>
+            </div>
+            <div class="mt-3 text-sm text-base-800/80 dark:text-base-100/80">“Kualitas frontend kelas satu. Komponen reusable mempersingkat waktu rilis.”</div>
+            <div class="mt-3 flex gap-1" aria-label="rating">
+              <div class="flex">★★★★★</div>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section py-20 bg-gradient-to-t from-transparent to-base-100/60 dark:to-base-800/30">
+      <div class="container mx-auto max-w-6xl px-4">
+        <div class="grid lg:grid-cols-2 gap-10 items-start">
+          <div class="reveal">
+            <h2 class="font-display text-3xl">Hubungi Saya</h2>
+            <p class="mt-2 text-base-800/80 dark:text-base-100/80">Cerita singkat tentang kebutuhan proyekmu akan sangat membantu. Balasan biasanya dalam 24 jam.</p>
+            <div class="mt-6 space-y-3 text-sm">
+              <div class="flex items-center gap-3"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Based in Jakarta (UTC+7)</div>
+              <div class="flex items-center gap-3"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/></svg> Tersedia remote & onsite</div>
+            </div>
+          </div>
+          <form class="reveal rounded-2xl p-6 border border-base-200/70 dark:border-white/10 bg-white/60 dark:bg-base-800/50 shadow-soft" onsubmit="event.preventDefault(); alert('Terima kasih! Pesanmu terkirim.'); this.reset();">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="text-sm">Nama</label>
+                <input required type="text" class="mt-1 w-full rounded-xl border border-base-200/70 dark:border-white/10 bg-white/80 dark:bg-base-900/40 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-500" />
+              </div>
+              <div>
+                <label class="text-sm">Email</label>
+                <input required type="email" class="mt-1 w-full rounded-xl border border-base-200/70 dark:border-white/10 bg-white/80 dark:bg-base-900/40 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-500" />
+              </div>
+            </div>
+            <div class="mt-4">
+              <label class="text-sm">Subjek</label>
+              <input type="text" class="mt-1 w-full rounded-xl border border-base-200/70 dark:border-white/10 bg-white/80 dark:bg-base-900/40 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-500" />
+            </div>
+            <div class="mt-4">
+              <label class="text-sm">Pesan</label>
+              <textarea required rows="5" class="mt-1 w-full rounded-xl border border-base-200/70 dark:border-white/10 bg-white/80 dark:bg-base-900/40 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+            </div>
+            <button class="mt-5 inline-flex items-center gap-2 rounded-xl bg-brand-600 text-white px-4 py-2 shadow-soft hover:translate-y-0.5 transition">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              Kirim Pesan
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-10 border-t border-base-200/70 dark:border-white/10">
+    <div class="container mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm">© <span id="year"></span>Imran Khayri. Semua hak cipta dilindungi.</p>
+      <div class="flex items-center gap-3">
+        <a href="#" class="rounded-xl border border-base-200/70 dark:border-white/10 p-2 hover:bg-white/60 dark:hover:bg-white/5" aria-label="Github">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.9 5.33.9 11.6c0 4.89 3.17 9.03 7.57 10.49.55.1.76-.24.76-.54 0-.27-.01-1.17-.02-2.12-3.08.67-3.73-1.31-3.73-1.31-.5-1.28-1.22-1.62-1.22-1.62-.99-.67.07-.66.07-.66 1.09.08 1.67 1.12 1.67 1.12.98 1.67 2.56 1.19 3.19.91.1-.71.38-1.19.68-1.46-2.46-.28-5.05-1.23-5.05-5.48 0-1.21.43-2.19 1.12-2.96-.11-.27-.49-1.36.1-2.84 0 0 .93-.3 3.05 1.13a10.6 10.6 0 0 1 5.56 0c2.12-1.43 3.05-1.13 3.05-1.13.59 1.48.21 2.57.1 2.84.69.77 1.12 1.75 1.12 2.96 0 4.26-2.6 5.2-5.07 5.48.39.34.73 1.02.73 2.06 0 1.49-.01 2.69-.01 3.06 0 .3.2.64.76.53A10.98 10.98 0 0 0 23.1 11.6C23.1 5.33 18.27.5 12 .5Z"/></svg>
+        </a>
+        <a href="#" class="rounded-xl border border-base-200/70 dark:border-white/10 p-2 hover:bg-white/60 dark:hover:bg-white/5" aria-label="LinkedIn">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.99v8.58H3.64V8.99h3.3ZM5.29 3.9a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8Zm4.66 5.09h3.16v1.17h.05c.44-.83 1.52-1.7 3.12-1.7 3.34 0 3.95 2.2 3.95 5.06v6.94h-3.29v-6.15c0-1.47-.03-3.36-2.05-3.36-2.05 0-2.36 1.6-2.36 3.25v6.26h-3.29V9Z"/></svg>
+        </a>
+        <a href="mailto:you@example.com" class="rounded-xl border border-base-200/70 dark:border-white/10 p-2 hover:bg-white/60 dark:hover:bg-white/5" aria-label="Email">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const navBtn = document.getElementById('navBtn');
+    const mobilePanel = document.getElementById('mobilePanel');
+    if (navBtn) navBtn.addEventListener('click', () => mobilePanel.classList.toggle('hidden'));
+
+    // Theme toggle (dark/light) with localStorage
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const sun = document.getElementById('sun');
+    const moon = document.getElementById('moon');
+
+    const setThemeIcons = () => {
+      const isDark = html.classList.contains('dark');
+      sun.classList.toggle('hidden', !isDark);
+      moon.classList.toggle('hidden', isDark);
+    };
+
+    const stored = localStorage.getItem('theme');
+    if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      html.classList.add('dark');
+    }
+    setThemeIcons();
+
+    themeToggle?.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+      setThemeIcons();
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
